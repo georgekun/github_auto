@@ -16,7 +16,9 @@ def manager_commnad(command:int):
 			
 		case 2:
 			hub.delete_repo()
-			
+   
+		case 3:
+			hub.auth()
 		case _:
 			return 
 			
@@ -30,6 +32,7 @@ Commands:
 close script - 0
 create repository - 1
 delete repository - 2
+save auth - 3
 			""")
 		command = int(input("Выберите command: "))
 		if manager_commnad(command):

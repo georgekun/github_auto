@@ -10,10 +10,13 @@ class GitHub():
         
         creds = self.check_creds()
         if not creds:
-            self.auth()
-        
-        self.username = creds.get("username")
-        self.token = creds.get("token")            
+            username, token = self.auth()
+            self.username = username
+            self.token = token
+            
+        else:
+            self.username = creds.get("username")
+            self.token = creds.get("token")            
         self.headers = {
             "Accept":"application/vnd.github+json",
             "Authorization": f"token {self.token}",
@@ -96,9 +99,8 @@ class GitHub():
 
         if save == 'y':
             self.saving_creds(username, token)
-        else:
-            self.username = username
-            self.token = token
+            
+        return username, token
 
     def saving_creds(self, username, token):
         auth = {
